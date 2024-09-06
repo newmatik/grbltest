@@ -1,6 +1,6 @@
 ﻿# grbltest
 
-**grbltest** is a console-based application developed in C# using .NET 8.0. This project communicates with GRBL firmware over a serial connection to control CNC machines. The application supports jogging, homing, resetting alarms, and querying GRBL status using keyboard input.
+**grbltest** is a .NET console application developed in C# that communicates with GRBL firmware via a serial connection to control CNC machines. It supports jogging, homing, resetting alarms, and querying GRBL status through keyboard inputs.
 
 **Note**: This is a work-in-progress project and is not production-ready.
 
@@ -9,6 +9,7 @@
 - **Visual Studio 2022** or later
 - **.NET 8.0 SDK** or later
 - **NuGet package**: `System.IO.Ports`
+- Serial (COM) port connected to a GRBL format compliant controller (e.g. openbuilds blackbox x32)
 
 ## Installation and Setup
 
@@ -20,12 +21,7 @@
     Install-Package System.IO.Ports
     ```
 
-4. **Note**: The COM port is hardcoded to `COM3` in the application. You may need to change this based on your setup:
-    - Open the `Program.cs` file and modify the following line to match your machine's COM port:
-    
-    ```csharp
-    serialPort = new SerialPort("COM3", 115200)
-    ```
+4. **Note**: The COM port is hardcoded to `COM3` in the application. You may need to change this based on your setup.
 
 ## How to Run
 
@@ -68,5 +64,7 @@ This project is licensed under the MIT License.
 
 ## Copyright
 
-(c) Newmatik GmbH
+Copyright (c) 2024 Newmatik GmbH  
+Am Markt 1, 55619 Hennweiler, Germany  
+software@newmatik.com, www.newmatik.com
 
