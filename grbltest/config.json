@@ -1,0 +1,7 @@
+﻿{
+  "comPort": "COM3",
+  "jogSpeed": 10000,
+  "rapidSpeed": 20000,
+  "workAreaX": 790,
+  "workAreaY": 260
+}
