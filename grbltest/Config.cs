@@ -20,5 +20,27 @@ namespace grbltest
             string json = File.ReadAllText(file);
             return Newtonsoft.Json.JsonConvert.DeserializeObject<Config>(json);
         }
+        public static Config? SetConfig(string port)
+        {
+            var configTemp = Config.LoadConfig("config.json");
+            if (configTemp == null)
+            {
+                Log.Logging("Couldn't read config-file", Log.LogLevel.Error);
+                return null;
+            }
+
+            if (!string.IsNullOrWhiteSpace(port))
+            {
+                string p = port.StartsWith("COM") || port.StartsWith("com") ? port.ToUpper() : $"COM{port}";
+
+                if (configTemp.ComPort.CompareTo(p) != 0)
+                {
+                    Log.Logging($"Changing COM-port from {configTemp.ComPort} to {p}", Log.LogLevel.Info);
+                    configTemp.ComPort = p;
+                }
+            }
+
+            return configTemp;
+        }
     }
 }

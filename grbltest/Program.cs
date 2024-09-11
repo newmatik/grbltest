@@ -16,16 +16,13 @@ class Program
 
     static void Main(string[] args)
     {
-        configTemp = Config.LoadConfig("config.json");
+        var port = GetCOMPortFromUser();
+        configTemp = Config.SetConfig(port);
         if (configTemp == null)
         {
-            Log.Logging("Couldn't read config-file", Log.LogLevel.Error);
+            Log.Logging("Exiting program because no config file", Log.LogLevel.Error);
             return;
         }
-        var port = GetCOMPortFromUser();
-        if(!string.IsNullOrWhiteSpace(port))
-            configTemp.ComPort = port.StartsWith("COM") ? port : $"COM{port}";
-
         // Set up the serial port configuration
         serialPort = new SerialPort(configTemp.ComPort, 115200)
         {
